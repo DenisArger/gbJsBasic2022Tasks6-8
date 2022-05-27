@@ -59,7 +59,21 @@
     X6: "Знаю, программирование это нелегко.",
     H99: "Однако, программирование, в итоге, принесет свои плоды.",
   };
+  let activeEl =  document.querySelector('.active');
+  const divTextEl = document.querySelector('div.text');
+  const navLinkEl = document.querySelector('.nav-tabs');
 
+  console.log(navLinkEl);
+
+  navLinkEl.addEventListener('click', event =>{
+    if(event.target.classList.contains('nav-link')){
+      activeEl.classList.remove('active');
+      event.target.classList.add('active');
+      activeEl = event.target;
+
+      divTextEl.textContent = panelText[event.target.parentElement.dataset.text];
+    }
+  });
 
   /*
   2. Необходимо сделать так, чтобы при изменении input'а менялся и размер шрифта
@@ -67,8 +81,11 @@
   шрифт у текста, никакого резкого увеличения шрифта не должно быть при
   перетаскивании ползунка.
    */
-
-
+  const inputEl = document.querySelector('input');
+  const inputDivEl = document.getElementById('inputDiv');
+  inputEl.addEventListener('input', event => {
+    inputDivEl.style.fontSize = `${event.target.value}px`;
+  });
 </script>
 </body>
 </html>
